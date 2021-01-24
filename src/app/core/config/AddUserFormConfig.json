@@ -1,0 +1,156 @@
+{
+  "formLabel": "Add user",
+  "inputConfigurations": [
+    {
+      "name": "FirstName",
+      "type": "text",
+      "label": "First Name",
+      "formEntityProperty": "firstname",
+      "validatorsConfig": [
+        {
+          "type": "required",
+          "message": "First Name is required"
+        },
+        {
+          "type": "minLength",
+          "validatorValue": "2",
+          "message": "A minimum of 2 characters required"
+        },
+        {
+          "type": "maxLength",
+          "validatorValue": "25",
+          "message": "A maximum of 25 characters only allowed"
+        },
+        {
+          "type": "allowBlanks",
+          "validatorValue": "false",
+          "message": "Blanks are not allowed"
+        },
+        {
+          "type": "pattern",
+          "validatorValue": "[a-zA-Z]+",
+          "message": "Only allows letters"
+        }
+      ]
+    },
+    {
+      "name": "MiddleName",
+      "type": "text",
+      "label": "Middle Name",
+      "formEntityProperty": "middlename",
+      "validatorsConfig": [
+        {
+          "type": "required",
+          "message": "Middle Name is required"
+        },
+        {
+          "type": "minLength",
+          "validatorValue": "2",
+          "message": "A minimum of 2 characters required"
+        },
+        {
+          "type": "maxLength",
+          "validatorValue": "25",
+          "message": "A maximum of 25 characters only allowed"
+        },
+        {
+          "type": "allowBlanks",
+          "validatorValue": "false",
+          "message": "Blanks are not allowed"
+        },
+        {
+          "type": "pattern",
+          "validatorValue": "[a-zA-Z]+",
+          "message": "Only allows letters"
+        }
+      ]
+    },
+    {
+      "name": "LastName",
+      "type": "text",
+      "label": "Last Name",
+      "formEntityProperty": "lastname",
+      "validatorsConfig": [
+        {
+          "type": "required",
+          "message": "Last Name is required"
+        },
+        {
+          "type": "minLength",
+          "validatorValue": "5",
+          "message": "A minimum of 5 characters required"
+        },
+        {
+          "type": "maxLength",
+          "validatorValue": "50",
+          "message": "A maximum of 50 characters only allowed"
+        },
+        {
+          "type": "allowBlanks",
+          "validatorValue": "false",
+          "message": "Blanks are not allowed"
+        },
+        {
+          "type": "pattern",
+          "validatorValue": "[a-zA-Z]+",
+          "message": "Only allows letters"
+        }
+      ]
+    },
+    {
+      "name": "Department",
+      "type": "select",
+      "label": "Department",
+      "options": ["Dept1", "Dept2", "Dept3"],
+      "formEntityProperty": "dept",
+      "validatorsConfig": [
+        {
+          "type": "required",
+          "message": "Department is required"
+        }
+      ]
+    },
+    {
+      "name": "Gender",
+      "type": "select",
+      "label": "Gender",
+      "options": ["Male", "Female", "Nuetral"],
+      "formEntityProperty": "gender",
+      "validatorsConfig": [
+        {
+          "type": "required",
+          "message": "Gender is required"
+        }
+      ]
+    },
+    {
+      "name": "Active",
+      "type": "radio",
+      "label": "Active",
+      "labels": ["Yes", "No"],
+      "formEntityProperty": "activeflag",
+      "validatorsConfig": [
+        {
+          "type": "required",
+          "message": "Active radio is required"
+        }
+      ]
+    },
+    {
+      "name": "Send Email",
+      "type": "checkBox",
+      "label": "Send email",
+      "formEntityProperty": "sendemail"
+    }
+  ],
+  "actionConfigurations": [
+    {
+      "formActionType": "POST",
+      "actionResourceUrl": "http://localhost:3002/users",
+      "buttonName": "Add user",
+      "buttonType": "primary",
+      "submitType": "submit",
+      "disableIfInvalid": true
+    }
+  ]
+}

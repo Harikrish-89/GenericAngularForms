@@ -1,0 +1,24 @@
+<div class="container mb-5">
+  <h2>User Management</h2>
+  <div>
+    <a routerLink = "addUser" routerLinkActive="active" class="btn btn-link">Add user</a>
+  </div>
+
+  <div>
+    <a routerLink = "treeForm" routerLinkActive="active" class="btn btn-link">Tree</a>
+  </div>
+  <div class="mt-2">
+    <app-data-table
+      [rows]="userRows"
+      [columns]="userColumns"
+      [config]="config"
+      [dataSubject]="userDataSubject"
+      [itemsPerPage]="itemsPerPage"
+      [length]="length"
+      [maxSize]="maxSize"
+      [numPages]="numPages"
+      [page]="userPage"
+      (cellClickedEvent)="onCellClick($event)"
+    ></app-data-table>
+  </div>
+</div>

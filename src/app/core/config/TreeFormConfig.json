@@ -1,0 +1,46 @@
+{
+  "formLabel": "Tree component",
+  "inputConfigurations": [
+    {
+      "name": "treeComponent",
+      "type": "tree",
+      "label": "Tree Config",
+      "formEntityProperty": "tree",
+      "tree": {
+        "id": "testNewId",
+        "leftBranch": {
+          "header": "headerOne",
+          "nodes": [
+            "headerOne-valueOne",
+            "headerOne-valueTwo",
+            "headerOne-valueThree"
+          ]
+        },
+        "rightBranch": {
+          "header": "headerTwo",
+          "nodes": [
+            "headerTwo-valueOne",
+            "headerTwo-valueTwo",
+            "headerTwo-valueThree"
+          ]
+        }
+      }
+    }
+  ],
+  "actionConfigurations": [
+    {
+      "formActionType": "POST",
+      "actionResourceUrl": "http://localhost:3002/trees",
+      "buttonName": "Save",
+      "buttonType": "primary",
+      "submitType": "submit",
+      "disableIfInvalid": false
+    },
+    {
+      "buttonName": "Reset",
+      "buttonType": "secondary",
+      "submitType": "reset",
+      "disableIfInvalid": false
+    }
+  ]
+}

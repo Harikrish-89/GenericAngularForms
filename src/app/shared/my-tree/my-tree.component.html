@@ -1,0 +1,107 @@
+<div class="border p-3">
+  <div class="row mb-5 mt-2 ml-2">
+    <h3>{{ treeLabel }}</h3>
+  </div>
+  <div class="row col-10">
+    <div class="col-4 border p-3" id="treeOne">
+      <div>
+        <div>
+          <a
+            (click)="isFirstCollapsed = !isFirstCollapsed"
+            [attr.aria-expanded]="!isFirstCollapsed"
+            aria-controls="leftTree"
+          >
+            <h5 *ngIf="isFirstCollapsed">+ {{ tree.leftBranch.header }}</h5>
+            <h5 *ngIf="!isFirstCollapsed">- {{ tree.leftBranch.header }}</h5>
+          </a>
+        </div>
+      </div>
+      <ul
+        id="leftTree"
+        class="list-group ml-5"
+        [collapse]="isFirstCollapsed"
+        [isAnimated]="true"
+      >
+        <li
+          *ngFor="let item of tree.leftBranch.nodes; let i = index"
+          class="list-group-item"
+          (click)="makeMeActive(0, i)"
+          [ngClass]="activeItemIndicator === '0_' + i ? 'active' : ''"
+        >
+          {{ item }}
+        </li>
+      </ul>
+    </div>
+    <div class="col-2 d-flex btn-group-vertical" id="controlButtons">
+      <div>
+        <button
+          type="button"
+          (click)="onAddOneFromLeftToRightClicked()"
+          [disabled]="!isLeftSingleMoveEnabled()"
+          class=" btn btn-primary "
+        >
+          >
+        </button>
+      </div>
+      <div class=" mt-2 ">
+        <button
+          type="button"
+          (click)="onAddAllFromLeftToRightClicked()"
+          [disabled]="!isLeftAllMoveEnabled()"
+          class="btn btn-primary "
+        >
+          >>
+        </button>
+      </div>
+      <div class=" mt-2 ">
+        <button
+          type="button"
+          (click)="onAddOneFromRightToLeftClicked()"
+          [disabled]="!isRightSingleMoveEnabled()"
+          class="btn btn-primary"
+        >
+          <
+        </button>
+      </div>
+      <div class=" mt-2 ">
+        <button
+          type="button"
+          (click)="onAddAllFromRightToLeftClicked()"
+          [disabled]="!isRightAllMoveEnabled()"
+          class="btn btn-primary"
+        >
+          <<
+        </button>
+      </div>
+    </div>
+    <div class="col-4" id="treeTwo" class="border p-3 float-left">
+      <div>
+        <div>
+          <a
+            (click)="isSecondCollapsed = !isSecondCollapsed"
+            [attr.aria-expanded]="!isSecondCollapsed"
+            aria-controls="rightTree"
+          >
+            <h5 *ngIf="isSecondCollapsed">+ {{ tree.rightBranch.header }}</h5>
+            <h5 *ngIf="!isSecondCollapsed">- {{ tree.rightBranch.header }}</h5>
+          </a>
+        </div>
+      </div>
+      <ul
+        id="rightTree"
+        class="list-group ml-5"
+        [collapse]="isSecondCollapsed"
+        [isAnimated]="true"
+      >
+        <li
+          *ngFor="let item of tree.rightBranch.nodes; let i = index"
+          class="list-group-item"
+          (click)="makeMeActive(1, i)"
+          [ngClass]="activeItemIndicator === '1_' + i ? 'active' : ''"
+        >
+          {{ item }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

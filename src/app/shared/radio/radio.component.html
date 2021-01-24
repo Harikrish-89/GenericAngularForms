@@ -1,0 +1,31 @@
+<form [formGroup]="inputRadioForm">
+  <div class="form-group">
+    <label class="mr-2">{{ inputConfig.label }}:</label>
+    <div *ngFor="let radioValue of inputConfig.labels; let i=index" class="custom-control custom-radio">
+      <input
+        type="radio"
+        id="radio_{{i}}"
+        class="custom-control-input"
+        [value]="radioValue"
+        formControlName="radioInput"
+        (change)="onChange()"
+      />
+      <label class="custom-control-label" for="radio_{{i}}">{{
+        radioValue
+      }}</label>
+    </div>
+  </div>
+  <div
+    *ngIf="
+      inputRadioForm.get('radioInput').invalid &&
+      (inputRadioForm.get('radioInput').dirty ||
+        inputRadioForm.get('radioInput').touched)
+    "
+    class="alert alert-danger"
+  >
+    <p *ngIf="requiredValidationMessage">{{ requiredValidationMessage }}</p>
+    <p *ngIf="!requiredValidationMessage">
+      Please choose any one option above
+    </p>
+  </div>
+</form>

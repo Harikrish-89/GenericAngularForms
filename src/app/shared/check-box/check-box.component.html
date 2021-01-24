@@ -1,0 +1,13 @@
+<form [formGroup]="inputCheckBoxForm">
+  <div class="custom-control custom-checkbox">
+    <input
+      type="checkbox"
+      class="custom-control-input"
+      formControlName="checkBoxInputFormControl"
+      [checked] = "checked"
+      (change)="onChange()"
+      [id]="id"
+    />
+    <label class="custom-control-label" [for]="id">{{ inputConfig.label }}</label>
+  </div>
+</form>

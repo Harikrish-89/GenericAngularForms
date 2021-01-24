@@ -1,0 +1,54 @@
+<form [formGroup]="inputTextAreaForm">
+  <div class="form-group">
+    <label>{{ inputConfig.label }}:</label>
+    <textarea
+      type="text"
+      class="form-control"
+      formControlName="textAreaInputFormControl"
+      (change)="onChange()"
+      [value] = "formValue"
+      required
+    ></textarea>
+  </div>
+  <div
+    *ngIf="
+      inputTextAreaForm.get('textAreaInputFormControl').invalid &&
+      (inputTextAreaForm.get('textAreaInputFormControl').dirty ||
+        inputTextAreaForm.get('textAreaInputFormControl').touched)
+    "
+    class="alert alert-danger"
+  >
+    <div
+      *ngIf="inputTextAreaForm.get('textAreaInputFormControl').errors.required"
+    >
+      <p *ngIf="requiredValidationMessage">{{ requiredValidationMessage }}</p>
+      <p *ngIf="!requiredValidationMessage">{{ inputConfig.label }} is required.</p>
+    </div>
+    <div
+      *ngIf="
+        inputTextAreaForm.get('textAreaInputFormControl').errors
+          .blanksNotAllowed
+      "
+    >
+      <p *ngIf="blanksNotAllowedValidationMessage">
+        {{ blanksNotAllowedValidationMessage }}
+      </p>
+      <p *ngIf="!blanksNotAllowedValidationMessage">
+        white space is not allowed for {{ inputConfig.label }}
+      </p>
+    </div>
+    <div
+      *ngIf="
+        inputTextAreaForm.get('textAreaInputFormControl').errors
+          .pattern
+      "
+    >
+      <p *ngIf="patternNotAllowedValidationMessage">
+        {{ patternNotAllowedValidationMessage }}
+      </p>
+      <p *ngIf="!patternNotAllowedValidationMessage">
+        Invalid input value for {{ inputConfig.label }}
+      </p>
+    </div>
+  </div>
+</form>

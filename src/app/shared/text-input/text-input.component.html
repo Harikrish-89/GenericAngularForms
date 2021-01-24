@@ -1,0 +1,68 @@
+<form [formGroup]="inputTextForm">
+  <div class="form-group">
+    <label>{{ inputConfig.label }}:</label>
+    <input
+      id="textInputFormControl"
+      name="textInputFormControl"
+      type="text"
+      class="form-control"
+      formControlName="textInputFormControl"
+      (change)="onChange()"
+      required
+      [readOnly]="inputConfig.disabled"
+    />
+  </div>
+  <div
+    *ngIf="
+      inputTextForm.get('textInputFormControl').invalid &&
+      (inputTextForm.get('textInputFormControl').dirty ||
+        inputTextForm.get('textInputFormControl').touched)
+    "
+    class="alert alert-danger"
+  >
+    <div *ngIf="inputTextForm.get('textInputFormControl').errors.required">
+      <p *ngIf="requiredValidationMessage">{{ requiredValidationMessage }}</p>
+      <p *ngIf="!requiredValidationMessage">
+        {{ inputConfig.label }} is required.
+      </p>
+    </div>
+    <div *ngIf="inputTextForm.get('textInputFormControl').errors.minlength">
+      <p *ngIf="minLengthValidationMessage">{{ minLengthValidationMessage }}</p>
+      <p *ngIf="!minLengthValidationMessage">
+        Atleast
+        {{
+          inputTextForm.get("textInputFormControl").errors.minlength
+            .requiredLength
+        }}
+        characters required
+      </p>
+    </div>
+    <div *ngIf="inputTextForm.get('textInputFormControl').errors.maxlength">
+      <p *ngIf="maxLengthValidationMessage">{{ maxLengthValidationMessage }}</p>
+      <p *ngIf="!maxLengthValidationMessage">
+        A maximum of
+        {{
+          inputTextForm.get("textInputFormControl").errors.maxlength
+            .requiredLength
+        }}
+        characters are only allowed
+      </p>
+    </div>
+    <div *ngIf="inputTextForm.get('textInputFormControl').errors.whiteSpace">
+      <p *ngIf="blanksNotAllowedValidationMessage">
+        {{ blanksNotAllowedValidationMessage }}
+      </p>
+      <p *ngIf="!blanksNotAllowedValidationMessage">
+        white space is not allowed for {{ inputConfig.label }}
+      </p>
+    </div>
+    <div *ngIf="inputTextForm.get('textInputFormControl').errors.pattern">
+      <p *ngIf="patternNotAllowedValidationMessage">
+        {{ patternNotAllowedValidationMessage }}
+      </p>
+      <p *ngIf="!patternNotAllowedValidationMessage">
+        Invalid input value for {{ inputConfig.label }}
+      </p>
+    </div>
+  </div>
+</form>
